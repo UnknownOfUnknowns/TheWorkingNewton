@@ -3,11 +3,12 @@ import re
 
 class Reader():
     def __init__(self, ch):
-        self.pattern = '(([\+\-]?\d*)' + ch + '\*{0,2}(\d*))'
+        self.pattern = '(([\+\-]?[\d\.\d]]*)' + ch + '\*{0,2}(\d*))'
         self.terms = []
 
     def read(self, inp):
         self.terms = re.findall(self.pattern, inp)
+
 
     def poly_derivative(self):
         res = ''
@@ -23,4 +24,4 @@ class Reader():
             exp = int(f[2])
         else:
             exp = 1
-        return str(int(f[1]) * int(exp)) + '*x**' + str(exp - 1)
+        return str(float(f[1]) * int(exp)) + 'x*' + str(exp - 1)
